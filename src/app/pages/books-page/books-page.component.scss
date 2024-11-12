@@ -1,0 +1,26 @@
+.content{
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-mdc-form-field {
+  margin: 20px;
+  width: 600px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px; /* Space between cards */
+  padding: 16px;
+}
+
+.card {
+  display: flex;
+}

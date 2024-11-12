@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="search">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        placeholder="Search by title or author"
+        [(ngModel)]="searchQuery"
+      />
+    </mat-form-field>
+  </div>
+
+
+  <div class="cards">
+    @for (book of filteredBooks(); track book) {
+      <app-card
+        class="card"
+        [book]="book"
+        (deleteBook)="deleteBook($event)"
+        (openModal)="openModal($event.mode, $event.book)">
+      </app-card>
+    }
+    <app-add-card class="card" (addBook)="openModal($event)"></app-add-card>
+  </div>
+</div>

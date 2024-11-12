@@ -1,0 +1,52 @@
+.card {
+  max-width: 300px;
+  min-height: 459px;
+  width: 300px;
+  overflow: hidden;
+  border: rgba(0, 0, 0, 0.3) solid 1px;
+  transition: 200ms;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    min-height: 300px;
+    height: 300px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    margin-top: 30px;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .publish-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    color: #8f8f8f;
+    font-size: 16px;
+  }
+}
+
+.button {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+
+  button {
+    width: 100%;
+    background: rgba(166, 11, 11, 0.65);
+    color: white;
+  }
+}

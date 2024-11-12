@@ -1,0 +1,84 @@
+@if(data.mode === mode.VIEW){
+  <h2 mat-dialog-title>Book details</h2>
+} @else if(data.mode === mode.EDIT){
+  <h2 mat-dialog-title>Edit book</h2>
+} @else {
+  <h2 mat-dialog-title>Add book</h2>
+}
+
+<form class="form" [formGroup]="form">
+  <div class="file-upload">
+    @if(data.mode !== mode.VIEW){
+      <button mat-raised-button (click)="fileInput.click()">Upload book cover</button>
+      <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+    }
+
+    <div class="image-preview">
+      @if (imageSrc) {
+        <img [src]="imageSrc" alt="Selected Image" />
+      } @else if(form.controls['img'].value) {
+        <img [src]="form.controls['img'].value" alt="Selected Image" />
+      } @else if(data.mode === mode.VIEW && !form.controls['img'].value){
+        <img src="https://comodosslstore.com/blog/wp-content/uploads/2024/01/website-page-found-error-robot-character-broken-chatbot-mascot-disabled-site-technical-work_502272-1888.jpg" alt="Selected Image" />
+      }
+    </div>
+  </div>
+
+  @if(data.mode === mode.VIEW){
+      <div class="content">
+        <h1>{{data.book.title}}</h1>
+
+        <div class="publish-info">
+          <p>{{data.book.author}}</p>
+          <p>{{data.book.year}}</p>
+        </div>
+
+        <p>{{data.book.description}}</p>
+      </div>
+  } @else {
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title"/>
+      @if (form.controls['title'].hasError('required')) {
+        <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Author name</mat-label>
+      <input matInput formControlName="author">
+      @if (form.controls['author'].hasError('required')) {
+        <mat-error>Author is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Publication year</mat-label>
+      <input matInput formControlName="year">
+      @if (form.controls['year'].hasError('required')) {
+        <mat-error>Year is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      @if (form.controls['title'].hasError('required')) {
+        <mat-error>Description is required</mat-error>
+      }
+    </mat-form-field>
+  }
+</form>
+
+<mat-dialog-actions class="buttons">
+  @if(data.mode === mode.VIEW){
+    <button mat-button color="primary" (click)="changeMode()">Edit</button>
+    <button mat-button (click)="onNoClick()">Close</button>
+  } @else if(this.data.book){
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button color="primary" [disabled]="!valid" (click)="onSave()">Save</button>
+  } @else {
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button color="primary" [disabled]="!valid" (click)="onAdd()">Add</button>
+  }
+</mat-dialog-actions>
