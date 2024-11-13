@@ -41,16 +41,6 @@ export class CardComponent {
 
   book = input<IBook>();
 
-  onDeleteBook(id: string | undefined, event: any){
-    event.stopPropagation();
-    this.deleteBook.emit(id);
-  }
-
-  onOpenEditModal(book: IBook | undefined, event: any){
-    event.stopPropagation();
-    this.openModal.emit({ mode: Mode.EDIT, book });
-  }
-
   openDetailsModal(book: IBook | undefined){
     this.openModal.emit({ mode: Mode.VIEW, book });
   }

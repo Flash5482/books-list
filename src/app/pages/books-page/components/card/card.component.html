@@ -15,7 +15,7 @@
     </div>
 
     <div class="button">
-      <button mat-stroked-button (click)="onDeleteBook(book()?.id, $event)">Delete</button>
+      <button mat-stroked-button (click)="deleteBook.emit(book()?.id); $event.stopPropagation()">Delete</button>
     </div>
   </mat-card-content>
 </mat-card>
