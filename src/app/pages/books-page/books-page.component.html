@@ -11,7 +11,7 @@
   </div>
 
 
-  <div class="cards">
+  <div class="cards" [@cardAnimation]="filteredBooks().length">
     @for (book of filteredBooks(); track book) {
       <app-card
         class="card"
